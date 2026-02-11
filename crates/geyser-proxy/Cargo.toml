@@ -1,0 +1,38 @@
+[package]
+name = "geyser-proxy"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "geyser-proxy"
+path = "src/main.rs"
+
+[dependencies]
+geyser-core = { path = "../geyser-core" }
+
+tonic = { workspace = true }
+tonic-health = { workspace = true }
+prost = { workspace = true }
+tokio = { workspace = true }
+futures = { workspace = true }
+
+axum = { workspace = true }
+tower = { workspace = true }
+tower-http = { workspace = true }
+hyper = { workspace = true }
+hyper-util = { workspace = true }
+
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+prometheus = { workspace = true }
+base64 = { workspace = true }
+hex = { workspace = true }
+bcs = { workspace = true }
+
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+anyhow = { workspace = true }
+toml = { workspace = true }
+parking_lot = { workspace = true }

@@ -1,0 +1,62 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/geyser-core",
+    "crates/geyser-proxy",
+    "crates/geyser-bench",
+    "crates/geyser-map",
+]
+
+[workspace.dependencies]
+# gRPC / networking
+tonic = { version = "0.12", features = ["zstd", "tls", "tls-roots"] }
+tonic-health = "0.12"
+prost = "0.13"
+prost-types = "0.13"
+hyper = { version = "1", features = ["full"] }
+hyper-util = { version = "0.1", features = ["tokio"] }
+reqwest = { version = "0.12", features = ["json"] }
+
+# Async runtime
+tokio = { version = "1", features = ["full"] }
+futures = "0.3"
+
+# Server
+axum = { version = "0.7", features = ["json"] }
+tower = { version = "0.5", features = ["util"] }
+tower-http = { version = "0.6", features = ["cors", "trace"] }
+
+# Serialization
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "0.8"
+
+# Metrics & stats
+hdrhistogram = "7"
+prometheus = "0.13"
+
+# Config & CLI
+clap = { version = "4", features = ["derive"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+# Crypto
+ed25519-dalek = { version = "2", features = ["rand_core"] }
+blake2 = "0.10"
+
+# BCS serialization (Sui's binary format)
+bcs = "0.1"
+
+# Misc
+anyhow = "1"
+thiserror = "2"
+dashmap = "6"
+parking_lot = "0.12"
+base64 = "0.22"
+hex = "0.4"
+rand = "0.8"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1

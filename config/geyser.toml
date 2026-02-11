@@ -1,0 +1,51 @@
+# Geyser Configuration
+# Make Sui transactions land faster
+
+[server]
+port = 8080
+
+[engine]
+# DirectValidator: Talk directly to validators (fastest)
+# FullnodeProxy: Race across fullnodes (fallback)
+# Hybrid: Try validators first, fall back to fullnodes
+mode = "Hybrid"
+
+# Auto-discovered from committee each epoch if empty
+validator_endpoints = []
+
+# Fullnode endpoints for fallback / reads
+fullnode_endpoints = [
+    "https://fullnode.mainnet.sui.io:443",
+]
+
+[gas_pool]
+# Number of pre-split gas coins to maintain
+pool_size = 10
+# Minimum balance per gas coin in MIST (0.1 SUI)
+min_balance_mist = 100_000_000
+
+[timing]
+# How often to ping validators for latency (seconds)
+health_ping_interval_secs = 10
+# TX submission timeout (seconds)
+submit_timeout_secs = 10
+# Effects collection timeout (seconds)
+effects_timeout_secs = 10
+# Initial retry delay (milliseconds) — aggressive vs Sui's 100ms
+initial_retry_delay_ms = 10
+# Max retry delay (seconds)
+max_retry_delay_secs = 5
+# Effects fallback delay (milliseconds) — aggressive vs Sui's 200ms
+effects_fallback_delay_ms = 20
+
+[quorum]
+# Max validators to contact simultaneously
+max_amplification = 124
+# Owned-object fanout (fast path transactions)
+owned_amplification = 20
+# Extra validators queried during WaitForEffects fallback fan-out
+effects_fallback_fanout = 120
+# Latency delta for validator selection (2% = match Sui's algorithm)
+latency_delta = 0.02
+# Default read mask for gRPC responses
+read_mask = ["effects"]

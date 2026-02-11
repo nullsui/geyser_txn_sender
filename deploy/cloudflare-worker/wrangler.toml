@@ -1,0 +1,10 @@
+name = "geyser-router"
+main = "src/worker.js"
+compatibility_date = "2024-01-01"
+
+# Fill in your Cloudflare account and zone IDs:
+# account_id = "YOUR_ACCOUNT_ID"
+#
+# routes = [
+#   { pattern = "txn.yourdomain.com/*", zone_id = "YOUR_ZONE_ID" }
+# ]

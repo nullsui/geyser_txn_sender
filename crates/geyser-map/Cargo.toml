@@ -1,0 +1,19 @@
+[package]
+name = "geyser-map"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "geyser-map"
+path = "src/main.rs"
+
+[dependencies]
+geyser-core = { path = "../geyser-core" }
+tokio = { workspace = true }
+clap = { workspace = true }
+reqwest = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+anyhow = { workspace = true }

@@ -1,0 +1,28 @@
+[Unit]
+Description=Geyser Proxy — Fast Sui Transaction Relay
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=geyser
+Group=geyser
+WorkingDirectory=/opt/geyser
+ExecStart=/opt/geyser/geyser-proxy
+Restart=always
+RestartSec=3
+Environment=GEYSER_CONFIG=/opt/geyser/geyser.toml
+Environment=RUST_LOG=geyser=info
+
+# Hardening
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/geyser
+PrivateTmp=true
+
+# Raise file descriptor limit for many gRPC connections
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
